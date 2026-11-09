@@ -1,12 +1,12 @@
-"""Loads sprites and sounds from the repository's assets directory."""
+"""Loads sprites and sounds that ship inside the package (``wingdash/resources``)."""
 
 from pathlib import Path
 
 import pygame
 
-ASSETS_DIR = Path(__file__).resolve().parents[2] / "assets"
-SPRITES_DIR = ASSETS_DIR / "sprites"
-SOUNDS_DIR = ASSETS_DIR / "sounds"
+RESOURCES_DIR = Path(__file__).resolve().parent / "resources"
+SPRITES_DIR = RESOURCES_DIR / "sprites"
+SOUNDS_DIR = RESOURCES_DIR / "sounds"
 
 
 def _image(name, alpha=True):
@@ -27,6 +27,19 @@ def load_sprites():
     }
 
 
+class _SilentSound:
+    """Stand-in used when no audio device is available, so the game still runs."""
+
+    def play(self):
+        return None
+
+
 def load_sounds():
-    """Load all wav files, keyed by file name without extension (wing, hit, point, ...)."""
-    return {path.stem: pygame.mixer.Sound(str(path)) for path in SOUNDS_DIR.glob("*.wav")}
+    """Load all wav files, keyed by file name without extension (wing, hit, point, ...).
+
+    Falls back to silent stand-ins if the audio mixer could not start.
+    """
+    paths = sorted(SOUNDS_DIR.glob("*.wav"))
+    if not pygame.mixer.get_init():
+        return {path.stem: _SilentSound() for path in paths}
+    return {path.stem: pygame.mixer.Sound(str(path)) for path in paths}

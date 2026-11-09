@@ -17,6 +17,9 @@ wingdash = "wingdash.__main__:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+wingdash = ["resources/sprites/*.png", "resources/sounds/*.wav"]
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
