@@ -87,7 +87,7 @@ The tests cover gravity, ground stop, bounds and pipe collisions, the scoring wi
 
 - No high-score storage, pause, difficulty levels or menu
 - The drawing loop and sounds are not covered by automated tests
-- Asset provenance is unconfirmed. The sprites and sounds are not original work by the author and may carry their own licenses. Confirm their terms or replace them before redistributing.
+- Asset provenance is unconfirmed. The sprites and sounds may carry their own licenses, so confirm their source and terms (or replace them) before redistributing.
 - Assets load from the checkout, so a non-editable install will not find them
 
 ## Roadmap
