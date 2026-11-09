@@ -6,7 +6,8 @@ import pytest
 
 from wingdash import assets
 
-SPRITES = [f"{d}.png" for d in range(10)] + ["message.png", "base.png", "background.png", "bird.png", "pipe.png"]
+SPRITES = [f"{d}.png" for d in range(10)]
+SPRITES += ["message.png", "base.png", "background.png", "bird.png", "pipe.png"]
 SOUNDS = ["wing", "hit", "point"]
 
 
